@@ -9,7 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "solid-js": "^1.9.10"
+    "@tailwindcss/vite": "^4.1.17",
+    "daisyui": "^5.5.5",
+    "solid-js": "^1.9.10",
+    "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
