@@ -1,3 +1,4 @@
+import { ChannelChat } from "./telegram-channel-chat";
 import { GroupChat } from "./telegram-group-chat";
 import { PrivateChat } from "./telegram-private-chat";
 
@@ -18,7 +19,7 @@ export abstract class TelegramChat {
          case "supergroup":
             return GroupChat.fromDto(dto);
          case "channel":
-            return null;
+            return ChannelChat.fromDto(dto);
          default:
             throw new Error(`Unknown chat type: ${dto.type}`);
       }
