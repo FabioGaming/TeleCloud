@@ -1,3 +1,4 @@
+import { GroupChat } from "./telegram-group-chat";
 import { PrivateChat } from "./telegram-private-chat";
 
 export abstract class TelegramChat {
@@ -15,7 +16,7 @@ export abstract class TelegramChat {
             return PrivateChat.fromDto(dto);
          case "group":
          case "supergroup":
-            return null;
+            return GroupChat.fromDto(dto);
          case "channel":
             return null;
          default:
