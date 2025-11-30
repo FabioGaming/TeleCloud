@@ -1,3 +1,5 @@
+import { PrivateChat } from "./telegram-private-chat";
+
 export abstract class TelegramChat {
    public id: number;
    public type: "private" | "group" | "supergroup" | "channel";
@@ -10,7 +12,7 @@ export abstract class TelegramChat {
    static fromDto(dto: any): TelegramChat {
       switch (dto.type) {
          case "private":
-            return null;
+            return PrivateChat.fromDto(dto);
          case "group":
          case "supergroup":
             return null;
