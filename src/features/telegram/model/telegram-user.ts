@@ -1,3 +1,5 @@
+import type { TelegramUserDto } from "./dto/telegram-user-dto";
+
 export class TelegramUser {
    public id: number;
    public isBot: boolean;
@@ -13,5 +15,9 @@ export class TelegramUser {
       this.lastName = lastName;
       this.username = username;
       this.languageCode = languageCode;
+   }
+
+   static fromDto(dto: TelegramUserDto): TelegramUser {
+      return new TelegramUser(dto.id, dto.is_bot, dto.first_name, dto.last_name, dto.username, dto.language_code);
    }
 }
