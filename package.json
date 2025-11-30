@@ -12,6 +12,7 @@
 	},
 	"dependencies": {
 		"@tailwindcss/vite": "^4.1.17",
+		"axios": "^1.13.2",
 		"daisyui": "^5.5.5",
 		"solid-js": "^1.9.10",
 		"tailwindcss": "^4.1.17"
