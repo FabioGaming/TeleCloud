@@ -1,7 +1,7 @@
 import type { AxiosInstance, AxiosRequestConfig } from "axios";
 import axios from "axios";
 
-class HttpClient {
+export class HttpClient {
    private instance: AxiosInstance;
 
    constructor(baseURL: string) {
