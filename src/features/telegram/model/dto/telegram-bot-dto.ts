@@ -1,4 +1,4 @@
-export interface TelegramUserDto {
+export interface TelegramBotDto {
    id: number;
    is_bot: boolean;
    first_name: string;

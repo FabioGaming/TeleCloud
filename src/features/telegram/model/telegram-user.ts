@@ -1,6 +1,6 @@
-import type { TelegramUserDto } from "./dto/telegram-user-dto";
+import type { TelegramBotDto } from "./dto/telegram-bot-dto";
 
-export class TelegramUser {
+export class TelegramBot {
    public id: number;
    public isBot: boolean;
    public firstName: string;
@@ -33,8 +33,8 @@ export class TelegramUser {
       this.hasMainWebApp = hasMainWebApp;
    }
 
-   static fromDto(dto: TelegramUserDto): TelegramUser {
-      return new TelegramUser(
+   static fromDto(dto: TelegramBotDto): TelegramBot {
+      return new TelegramBot(
          dto.id,
          dto.is_bot,
          dto.first_name,
