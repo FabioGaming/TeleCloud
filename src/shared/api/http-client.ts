@@ -1,4 +1,4 @@
-import type { AxiosInstance } from "axios";
+import type { AxiosInstance, AxiosRequestConfig } from "axios";
 import axios from "axios";
 
 class HttpClient {
@@ -20,5 +20,19 @@ class HttpClient {
             return Promise.reject(error);
          },
       );
+   }
+
+   setToken(token: string) {
+      this.instance.defaults.baseURL = `https://api.telegram.org/bot${token}/`;
+   }
+
+   async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
+      const response = await this.instance.get<T>(url, config);
+      return response.data;
+   }
+
+   async post<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
+      const response = await this.instance.post<T>(url, data, config);
+      return response.data;
    }
 }
