@@ -1,3 +1,5 @@
+import type { TelegramUserDto } from "./dto/telegram-user-dto";
+
 export class TelegramUser {
    public id: number;
    public isBot: boolean;
@@ -29,5 +31,19 @@ export class TelegramUser {
       this.supportsInlineQueries = supportsInlineQueries;
       this.canConnectToBusiness = canConnectToBusiness;
       this.hasMainWebApp = hasMainWebApp;
+   }
+
+   static fromDto(dto: TelegramUserDto): TelegramUser {
+      return new TelegramUser(
+         dto.id,
+         dto.is_bot,
+         dto.first_name,
+         dto.username,
+         dto.can_join_groups,
+         dto.can_read_all_group_messages,
+         dto.supports_inline_queries,
+         dto.can_connect_to_business,
+         dto.has_main_web_app,
+      );
    }
 }
