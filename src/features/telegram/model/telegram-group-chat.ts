@@ -1,3 +1,4 @@
+import type { GroupChatDto } from "./dto/chat-types/group-chat-dto";
 import { TelegramChat } from "./telegram-chat";
 
 export class GroupChat extends TelegramChat {
@@ -12,13 +13,17 @@ export class GroupChat extends TelegramChat {
       type: "group" | "supergroup",
       title: string,
       allMembersAreAdmins?: boolean,
-      accepctedGiftType?: Record<string, boolean>,
+      accepctedGiftTypes?: Record<string, boolean>,
    ) {
       super(id, type);
       this.id = id;
       this.type = type;
       this.title = title;
       this.allMembersAreAdministrators = allMembersAreAdmins;
-      this.acceptedGiftTypes = accepctedGiftType;
+      this.acceptedGiftTypes = accepctedGiftTypes;
+   }
+
+   static fromDto(dto: GroupChatDto): GroupChat {
+      return new GroupChat(dto.id, dto.type, dto.title, dto.all_members_are_administrators, dto.accepted_gifts);
    }
 }
