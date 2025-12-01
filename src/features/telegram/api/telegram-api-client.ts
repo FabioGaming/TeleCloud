@@ -1,6 +1,7 @@
 import { HttpClient } from "../../../shared/api/http-client";
 import type { TelegramResponse } from "../../../shared/interfaces/telegram-response";
 import { URL_CONFIG } from "../../../shared/lib/constants";
+import type { TelegramDocumentDto } from "../model/dto/telegram-document-dto";
 import type { TelegramMessageDto } from "../model/dto/telegram-message-dto";
 import type { TelegramUpdateDto } from "../model/dto/telegram-update-dto";
 
@@ -45,6 +46,12 @@ export class TelegramApiClient {
 
       return this.http.post<TelegramResponse<TelegramMessageDto>>("sendDocument", form, {
          headers: {},
+      });
+   }
+
+   async getFile(fileId: string): Promise<TelegramResponse<TelegramDocumentDto>> {
+      return this.http.get<TelegramResponse<TelegramDocumentDto>>("getFile", {
+         params: { file_id: fileId },
       });
    }
 }
