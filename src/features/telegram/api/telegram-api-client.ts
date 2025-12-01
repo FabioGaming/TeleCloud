@@ -33,4 +33,18 @@ export class TelegramApiClient {
          text: text,
       });
    }
+
+   async sendDocument(
+      chatId: number | string,
+      file: Blob | File,
+      filename: string,
+   ): Promise<TelegramResponse<TelegramMessageDto>> {
+      const form = new FormData();
+      form.append("chat_id", String(chatId));
+      form.append("document", file, filename);
+
+      return this.http.post<TelegramResponse<TelegramMessageDto>>("sendDocument", form, {
+         headers: {},
+      });
+   }
 }
