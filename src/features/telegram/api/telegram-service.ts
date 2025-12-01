@@ -16,4 +16,8 @@ export class TelegramService {
    async sendMessage(chatId: string | number, text: string): Promise<TelegramMessage> {
       return TelegramMessage.fromDto((await this.api.sendMessage(chatId, text)).result);
    }
+
+   async sendDocument(chatId: string, file: Blob | File, filename: string): Promise<TelegramMessage> {
+      return TelegramMessage.fromDto((await this.api.sendDocument(chatId, file, filename)).result);
+   }
 }
