@@ -25,4 +25,8 @@ export class TelegramService {
    async getFileInfo(fileId: string): Promise<TelegramDocument> {
       return TelegramDocument.fromDto((await this.api.getFile(fileId)).result);
    }
+
+   async downloadFile(path: string): Promise<ArrayBuffer> {
+      return await this.api.downloadFile(path);
+   }
 }
