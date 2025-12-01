@@ -13,6 +13,10 @@ export class TelegramApiClient {
       this.http = new HttpClient(URL_CONFIG.TELEGRAM_BASE_URL);
    }
 
+   get getToken(): string {
+      return this.token;
+   }
+
    setToken(token: string) {
       this.http.setToken(token);
    }
