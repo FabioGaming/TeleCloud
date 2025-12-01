@@ -1,3 +1,4 @@
+import { TelegramDocument } from "../model/telegram-document";
 import { TelegramMessage } from "../model/telegram-message";
 import { TelegramUpdate } from "../model/telegram-update";
 import { TelegramApiClient } from "./telegram-api-client";
@@ -19,5 +20,9 @@ export class TelegramService {
 
    async sendDocument(chatId: string, file: Blob | File, filename: string): Promise<TelegramMessage> {
       return TelegramMessage.fromDto((await this.api.sendDocument(chatId, file, filename)).result);
+   }
+
+   async getFileInfo(fileId: string): Promise<TelegramDocument> {
+      return TelegramDocument.fromDto((await this.api.getFile(fileId)).result);
    }
 }
