@@ -1,5 +1,6 @@
 import type { AxiosInstance, AxiosRequestConfig } from "axios";
 import axios from "axios";
+import { URL_CONFIG } from "../lib/constants";
 
 export class HttpClient {
    private instance: AxiosInstance;
@@ -23,7 +24,7 @@ export class HttpClient {
    }
 
    setToken(token: string) {
-      this.instance.defaults.baseURL = `https://api.telegram.org/bot${token}/`;
+      this.instance.defaults.baseURL = `${URL_CONFIG.TELEGRAM_BASE_URL}/bot${token}/`;
    }
 
    async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
