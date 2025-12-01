@@ -7,7 +7,7 @@ export class TelegramService {
    private readonly api: TelegramApiClient;
    constructor(api: TelegramApiClient) {
       this.api = api;
-      api.setToken(api.getToken);
+      this.api.setToken(this.api.getToken);
    }
 
    async getUpdates(offset?: number, limit?: number, timeout?: number): Promise<TelegramUpdate[]> {
