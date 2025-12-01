@@ -1,3 +1,5 @@
+import type { TelegramDocumentDto } from "./dto/telegram-document-dto";
+
 export class TelegramDocument {
    public fileName: string;
    public fileId: string;
@@ -9,5 +11,9 @@ export class TelegramDocument {
       this.fileId = fileId;
       this.fileUniqueId = fileUniqueId;
       this.fileSize = fileSize;
+   }
+
+   static fromDto(dto: TelegramDocumentDto): TelegramDocument {
+      return new TelegramDocument(dto.file_name, dto.file_id, dto.file_unique_id, dto.file_size);
    }
 }
