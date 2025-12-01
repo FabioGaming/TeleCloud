@@ -1,3 +1,4 @@
+import axios from "axios";
 import { HttpClient } from "../../../shared/api/http-client";
 import type { TelegramResponse } from "../../../shared/interfaces/telegram-response";
 import { URL_CONFIG } from "../../../shared/lib/constants";
@@ -53,5 +54,13 @@ export class TelegramApiClient {
       return this.http.get<TelegramResponse<TelegramDocumentDto>>("getFile", {
          params: { file_id: fileId },
       });
+   }
+
+   async downloadFile(path: string): Promise<ArrayBuffer> {
+      const response = await axios.get(`${URL_CONFIG.TELEGRAM_BASE_URL}/file/bot${this.token}/${path}`, {
+         responseType: "arraybuffer",
+      });
+
+      return response.data;
    }
 }
