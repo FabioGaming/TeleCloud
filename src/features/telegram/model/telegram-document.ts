@@ -5,6 +5,7 @@ export class TelegramDocument {
    public fileId: string;
    public fileUniqueId: string;
    public fileSize: number;
+   /** Not populated unless file is explicitly fetched */
    public filePath?: string;
 
    constructor(fileName: string, fileId: string, fileUniqueId: string, fileSize: number, filePath?: string) {
