@@ -13,14 +13,14 @@ export class GroupChat extends TelegramChat {
       type: "group" | "supergroup",
       title: string,
       allMembersAreAdmins?: boolean,
-      accepctedGiftTypes?: Record<string, boolean>,
+      acceptedGiftTypes?: Record<string, boolean>,
    ) {
       super(id, type);
       this.id = id;
       this.type = type;
       this.title = title;
       this.allMembersAreAdministrators = allMembersAreAdmins;
-      this.acceptedGiftTypes = accepctedGiftTypes;
+      this.acceptedGiftTypes = acceptedGiftTypes;
    }
 
    static fromDto(dto: GroupChatDto): GroupChat {
