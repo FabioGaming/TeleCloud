@@ -15,4 +15,10 @@ export class TelegramApiClient {
    setToken(token: string) {
       this.http.setToken(token);
    }
+
+   async getUpdates(offset?: number, limit?: number, timeout?: number): Promise<TelegramResponse<TelegramUpdateDto[]>> {
+      return this.http.get<TelegramResponse<TelegramUpdateDto[]>>("getUpdates", {
+         params: { offset, limit, timeout },
+      });
+   }
 }
