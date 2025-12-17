@@ -1,0 +1,10 @@
+export type { TelegramChatBaseDto } from "./TelegramChatBaseDto";
+export type { TelegramEntityDto } from "./TelegramEntityDto";
+export type { TelegramResponseDto } from "./TelegramResponseDto";
+export type { TelegramUserDto } from "./TelegramUserDto";
+export type { TelegramBotDto } from "./TelegramBotDto";
+export type { TelegramDocumentDto } from "./TelegramDocumentDto";
+export type { TelegramChatDto } from "./TelegramChatDto";
+export type { TelegramMessageDto } from "./TelegramMessageDto";
+export type { TelegramUpdateDto } from "./TelegramUpdateDto";
+export * from "./chat-types";
