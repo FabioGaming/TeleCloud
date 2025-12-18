@@ -17,6 +17,7 @@
       "axios": "^1.13.2",
       "daisyui": "^5.5.14",
       "solid-js": "^1.9.10",
+      "surrealdb": "^1.3.2",
       "tailwindcss": "^4.1.18"
    },
    "devDependencies": {
