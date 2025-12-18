@@ -5,7 +5,7 @@ import type { TelegramUserDto } from "./TelegramUserDto";
 
 export interface TelegramMessageDto {
    message_id: number;
-   from: TelegramUserDto;
+   from?: TelegramUserDto;
    chat: TelegramChatDto;
    date: number;
    text?: string;

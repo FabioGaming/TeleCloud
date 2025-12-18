@@ -13,6 +13,25 @@ import { mapDocumentDtoToEntity, mapMessageDtoToEntity, mapUpdateDtoToEntity } f
 
 const TELEGRAM_BASE_URL = "https://api.telegram.org";
 
+export class TelegramApiError extends Error {
+   public readonly errorCode: number;
+   public readonly description: string;
+
+   constructor(errorCode: number, description: string) {
+      super(`Telegram API error ${errorCode}: ${description}`);
+      this.name = "TelegramApiError";
+      this.errorCode = errorCode;
+      this.description = description;
+   }
+}
+
+function assertOk<T>(response: TelegramResponseDto<T>): T {
+   if (!response.ok) {
+      throw new TelegramApiError(response.error_code ?? 0, response.description ?? "Unknown error");
+   }
+   return response.result;
+}
+
 export class TelegramHttpClient implements TelegramClientPort {
    private readonly token: string;
    private readonly baseUrl: string;
@@ -27,14 +46,14 @@ export class TelegramHttpClient implements TelegramClientPort {
          chat_id: request.chatId,
          text: request.text,
       });
-      return mapMessageDtoToEntity(response.data.result);
+      return mapMessageDtoToEntity(assertOk(response.data));
    }
 
    async fetchUpdates(request: FetchUpdatesRequest): Promise<TelegramUpdate[]> {
       const response = await axios.get<TelegramResponseDto<TelegramUpdateDto[]>>(`${this.baseUrl}getUpdates`, {
          params: { offset: request.offset, limit: request.limit, timeout: request.timeout },
       });
-      return response.data.result.map(mapUpdateDtoToEntity);
+      return assertOk(response.data).map(mapUpdateDtoToEntity);
    }
 
    async sendDocument(request: SendDocumentRequest): Promise<TelegramMessage> {
@@ -43,14 +62,14 @@ export class TelegramHttpClient implements TelegramClientPort {
       form.append("document", request.file, request.filename);
 
       const response = await axios.post<TelegramResponseDto<TelegramMessageDto>>(`${this.baseUrl}sendDocument`, form);
-      return mapMessageDtoToEntity(response.data.result);
+      return mapMessageDtoToEntity(assertOk(response.data));
    }
 
    async getFileInfo(request: GetFileInfoRequest): Promise<TelegramDocument> {
       const response = await axios.get<TelegramResponseDto<TelegramDocumentDto>>(`${this.baseUrl}getFile`, {
          params: { file_id: request.fileId },
       });
-      return mapDocumentDtoToEntity(response.data.result);
+      return mapDocumentDtoToEntity(assertOk(response.data));
    }
 
    async downloadFile(request: DownloadFileRequest): Promise<ArrayBuffer> {

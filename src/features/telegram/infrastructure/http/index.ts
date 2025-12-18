@@ -1,1 +1,1 @@
-export { TelegramHttpClient } from "./TelegramHttpClient";
+export { TelegramHttpClient, TelegramApiError } from "./TelegramHttpClient";
