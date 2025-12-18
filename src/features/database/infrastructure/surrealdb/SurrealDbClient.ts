@@ -18,4 +18,10 @@ export class SurrealDbClient implements IDatabase<Surreal> {
       });
       this._isConnected = true;
    }
+
+   async disconnect(): Promise<void> {
+      if (!this._isConnected) return;
+      await this.db.close();
+      this._isConnected = false;
+   }
 }
