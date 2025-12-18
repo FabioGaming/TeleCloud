@@ -9,8 +9,9 @@ When reviewing code in this repository, follow these guidelines:
 - The code must follow **true feature-based clean architecture**:
    - UI/presentation layers must not contain domain logic, business rules, or direct database access.
    - Domain layer must only contain business entities, validation, and core domain logic.
-   - Application/use case layer must orchestrate domain logic and coordinate persistence.
-   - No direct SurrealDB queries, HTTP calls, or external service calls should exist in the domain or UI layers.
+   - Application/use case layer must orchestrate domain logic and coordinate persistence, depending only on abstractions (interfaces/ports) for infrastructure concerns.
+   - No direct SurrealDB queries, HTTP calls, file system access, or external service calls should exist in the domain or UI layers.
+   - An **infrastructure/adapters layer** must contain all concrete implementations for SurrealDB query execution, HTTP clients, file system access, and external service integrations, which are consumed by the application/use case layer via abstractions.
 - If any code violates this structure, comment clearly on:
    - What layer the violation occurs in
    - Why it is a violation
