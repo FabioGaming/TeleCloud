@@ -23,9 +23,9 @@ When reviewing code in this repository, follow these guidelines:
 
 - **All SurrealDB queries must be stored in `.surql` files**.
 - Queries must **not appear in `.ts`, `.tsx`, `.js`, or `.jsx` files**.
-- If a query string is found in code, comment:
-   - “This SurrealDB query must be moved to a `.surql` file.”
-- The location of `.surql` files is not restricted; they can exist anywhere in the repo.
+- If a query string is found in code, comment something along the lines of:
+   - “This SurrealDB query must be moved to a `.surql` file in the feature's infrastructure/data layer (for example, `features/<feature>/infrastructure/db/queries/<query-name>.surql`). The application/use case layer should reference this query via a repository or data-access abstraction, rather than embedding the query string directly in UI or domain code.”
+- `.surql` files should be placed according to clean architecture principles: typically in the **infrastructure/data layer** of the relevant feature or bounded context, and only accessed from the **application/use case layer** through well-defined interfaces (e.g., repositories or services), not directly from UI or domain layers.
 
 ---
 
