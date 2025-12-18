@@ -6,7 +6,7 @@ import type {
    GetFileInfoRequest,
    SendDocumentRequest,
    SendMessageRequest,
-   TelegramClientPort,
+   ITelegramClient,
 } from "../../domain/ports";
 import type { TelegramDocumentDto, TelegramMessageDto, TelegramResponseDto, TelegramUpdateDto } from "../dto";
 import { mapDocumentDtoToEntity, mapMessageDtoToEntity, mapUpdateDtoToEntity } from "../mappers";
@@ -32,7 +32,7 @@ function assertOk<T>(response: TelegramResponseDto<T>): T {
    return response.result;
 }
 
-export class TelegramHttpClient implements TelegramClientPort {
+export class TelegramHttpClient implements ITelegramClient {
    private readonly token: string;
    private readonly baseUrl: string;
 

@@ -1,5 +1,5 @@
 import type { TelegramUpdate } from "../../domain/entities";
-import type { TelegramClientPort, FetchUpdatesRequest } from "../../domain/ports";
+import type { ITelegramClient, FetchUpdatesRequest } from "../../domain/ports";
 
 export interface FetchUpdatesUseCaseRequest {
    offset?: number;
@@ -12,9 +12,9 @@ export interface FetchUpdatesUseCaseResponse {
 }
 
 export class FetchUpdatesUseCase {
-   private readonly telegramClient: TelegramClientPort;
+   private readonly telegramClient: ITelegramClient;
 
-   constructor(telegramClient: TelegramClientPort) {
+   constructor(telegramClient: ITelegramClient) {
       this.telegramClient = telegramClient;
    }
 

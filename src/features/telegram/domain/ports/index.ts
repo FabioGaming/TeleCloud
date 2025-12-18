@@ -1,8 +1,8 @@
 export type {
-   TelegramClientPort,
+   ITelegramClient,
    SendMessageRequest,
    SendDocumentRequest,
    FetchUpdatesRequest,
    GetFileInfoRequest,
    DownloadFileRequest,
-} from "./TelegramClientPort";
+} from "./ITelegramClient";

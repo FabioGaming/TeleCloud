@@ -1,5 +1,5 @@
 import type { TelegramMessage } from "../../domain/entities";
-import type { TelegramClientPort, SendDocumentRequest } from "../../domain/ports";
+import type { ITelegramClient, SendDocumentRequest } from "../../domain/ports";
 
 export interface SendDocumentUseCaseRequest {
    chatId: number | string;
@@ -12,9 +12,9 @@ export interface SendDocumentUseCaseResponse {
 }
 
 export class SendDocumentUseCase {
-   private readonly telegramClient: TelegramClientPort;
+   private readonly telegramClient: ITelegramClient;
 
-   constructor(telegramClient: TelegramClientPort) {
+   constructor(telegramClient: ITelegramClient) {
       this.telegramClient = telegramClient;
    }
 

@@ -25,7 +25,7 @@ export interface DownloadFileRequest {
    path: string;
 }
 
-export interface TelegramClientPort {
+export interface ITelegramClient {
    sendMessage(request: SendMessageRequest): Promise<TelegramMessage>;
    fetchUpdates(request: FetchUpdatesRequest): Promise<TelegramUpdate[]>;
    sendDocument(request: SendDocumentRequest): Promise<TelegramMessage>;

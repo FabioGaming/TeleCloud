@@ -1,6 +1,6 @@
 import { createContext, createMemo, useContext, type JSX } from "solid-js";
 import { FetchUpdatesUseCase, SendDocumentUseCase, SendMessageUseCase } from "../../application";
-import type { TelegramClientPort } from "../../domain";
+import type { ITelegramClient } from "../../domain";
 import { TelegramHttpClient } from "../../infrastructure";
 
 interface TelegramContextValue {
@@ -19,7 +19,7 @@ interface TelegramProviderProps {
 // Composition root: wires infrastructure to use cases
 export function TelegramProvider(props: TelegramProviderProps) {
    const value = createMemo(() => {
-      const client: TelegramClientPort = new TelegramHttpClient(props.token);
+      const client: ITelegramClient = new TelegramHttpClient(props.token);
       return {
          sendMessageUseCase: new SendMessageUseCase(client),
          fetchUpdatesUseCase: new FetchUpdatesUseCase(client),
