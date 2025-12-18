@@ -1,0 +1,52 @@
+# GitHub Copilot Review Instructions
+
+When reviewing code in this repository, follow these guidelines:
+
+---
+
+## 1. Clean Architecture Enforcement
+
+- The code must follow **true feature-based clean architecture**:
+   - UI/presentation layers must not contain domain logic, business rules, or direct database access.
+   - Domain layer must only contain business entities, validation, and core domain logic.
+   - Application/use case layer must orchestrate domain logic and coordinate persistence.
+   - No direct SurrealDB queries, HTTP calls, or external service calls should exist in the domain or UI layers.
+- If any code violates this structure, comment clearly on:
+   - What layer the violation occurs in
+   - Why it is a violation
+   - How to fix it according to clean architecture principles
+
+---
+
+## 2. SurrealDB Query Rules
+
+- **All SurrealDB queries must be stored in `.surql` files**.
+- Queries must **not appear in `.ts`, `.tsx`, `.js`, or `.jsx` files**.
+- If a query string is found in code, comment:
+   - “This SurrealDB query must be moved to a `.surql` file.”
+- The location of `.surql` files is not restricted; they can exist anywhere in the repo.
+
+---
+
+## 3. Default Checks
+
+- After enforcing the above rules, also perform **default Copilot review checks**, including:
+   - Basic syntax and type issues
+   - Common JavaScript/TypeScript mistakes
+   - Basic security vulnerabilities or unsafe patterns
+- Do **not comment on formatting or style issues** unless they cause functional or security problems.
+
+---
+
+## 4. Feedback Guidelines
+
+- Only comment on violations or issues; **do not leave unnecessary or generic comments**.
+- Provide **clear explanations** of violations and recommended fixes.
+- Focus first on the architecture rules, then on any other critical issues identified by Copilot.
+
+---
+
+### Notes
+
+- These instructions apply to **all files in the repository**, including `.ts`, `.tsx`, `.js`, `.jsx`, and `.surql`.
+- Copilot will automatically use these instructions when reviewing pull requests.
