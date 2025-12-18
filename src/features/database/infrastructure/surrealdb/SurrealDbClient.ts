@@ -8,4 +8,14 @@ export class SurrealDbClient implements IDatabase<Surreal> {
    constructor() {
       this.db = new Surreal();
    }
+
+   async connect(): Promise<void> {
+      if (this._isConnected) return;
+
+      await this.db.connect("indxdb://telecloud", {
+         namespace: "telecloud",
+         database: "main",
+      });
+      this._isConnected = true;
+   }
 }
