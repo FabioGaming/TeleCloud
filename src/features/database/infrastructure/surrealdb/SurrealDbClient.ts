@@ -28,4 +28,8 @@ export class SurrealDbClient implements IDatabase<Surreal> {
    isConnected(): boolean {
       return this._isConnected;
    }
+
+   getClient(): Surreal {
+      return this.db;
+   }
 }
