@@ -25,7 +25,7 @@ export class SurrealDbClient implements IDatabase<Surreal> {
       this._isConnected = false;
    }
 
-   async isConnected(): boolean {
+   isConnected(): boolean {
       return this._isConnected;
    }
 }
